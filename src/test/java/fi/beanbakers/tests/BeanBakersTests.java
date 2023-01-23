@@ -1,8 +1,8 @@
 package fi.beanbakers.tests;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,7 +18,6 @@ public class BeanBakersTests {
 	public void testReverseList() {
 		List<String> input = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
 		List<String> expectedResult = Arrays.asList("g", "f", "e", "d", "c", "b", "a");
-
 		List<String> result = doReverseList(input);
 		Assert.assertArrayEquals(expectedResult.toArray(new String[expectedResult.size()]),
 				result.toArray(new String[result.size()]));
@@ -31,8 +30,17 @@ public class BeanBakersTests {
 	 * @return provided list reversed
 	 */
 	private <T> List<T> doReverseList(List<T> input) {
-		// TODO: Write code!
-		return Collections.emptyList();
+
+		// Reversed List will be created and given list will be reversed.
+
+		List<T> reversedList = new ArrayList<T>();
+
+
+		for (int i = input.size(); i>0; i--) {
+			reversedList.add(input.get(i-1));
+		}
+
+		return reversedList;
 	}
 
 	@Test
@@ -50,9 +58,30 @@ public class BeanBakersTests {
 	 * @param sequenceLength the amount of fibonacci sequence items to calculate
 	 * @return int array containing the calculated fibonacci sequence
 	 */
+
+	 //Method will create new Array called "fibonacci" that will be return Array that has lenght of sequenceLength input.
+
 	private int[] doFibonacciSequence(int sequenceLength) {
-		// TODO: Write code!
-		return new int[0];
+		int[] fibonacci = new int[sequenceLength];
+
+		fibonacci[0] = 1;
+
+		for (int i = 0; i<sequenceLength; i++) {
+			
+			if (i == 0) {
+				fibonacci[i] = 1;
+			}
+
+			else if (i == 1) {
+				fibonacci[i] = fibonacci[i-1];
+			}
+			
+			else {
+				fibonacci[i] = fibonacci[i-1] + fibonacci[i-2];
+			}
+
+		}
+		return fibonacci;
 	}
 
 	@Test
@@ -73,9 +102,22 @@ public class BeanBakersTests {
 	 * @param series
 	 * @return true if provided series ascends, false otherwise.
 	 */
+
 	private boolean isAscendingSeries(List<Integer> series) {
-		// TODO: Write code!
-		return false;
+
+		boolean isAscending = true;
+
+		for (int i = 1; i<series.size(); i++) {
+			if (series.get(i) < series.get(i-1)) {
+				return false;
+			}
+			else {
+				isAscending = true;
+			}
+			
+		}
+
+		return isAscending;
 	}
 
 	/**
@@ -86,7 +128,19 @@ public class BeanBakersTests {
 	 * @return true if the provided series descends, false otherwise.
 	 */
 	private boolean isDescendingSeries(List<Integer> series) {
-		// TODO: Write code!
-		return false;
+		
+		boolean isDescending = true;
+
+		for (int i = 1; i<series.size(); i++) {
+			if (series.get(i) > series.get(i-1)) {
+				return false;
+			}
+			else {
+				isDescending = true;
+			}
+			
+		}
+
+		return isDescending;
 	}
 }
